@@ -1,6 +1,6 @@
 # ToDo Notes - Back End
 
-> back end of an app for creating to-do notes
+> back end of an app for creating to-do notes made with typescript
 
 ## Setting up
 
