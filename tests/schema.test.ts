@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { noteSchema } from "../src/schema/noteSchema";
+import { colorSchema, noteSchema } from "../src/schema/noteSchema";
 
 describe("noteSchema", () => {
   const generateValidInput = () => ({
@@ -89,6 +89,65 @@ describe("noteSchema", () => {
     const input = generateValidInput();
 
     const { error } = noteSchema.validate(input);
+
+    expect(error).toBeUndefined();
+  });
+});
+
+describe("colorSchema", () => {
+  const generateValidInput = () => ({
+    color: "#B9FFDD",
+  });
+
+  describe("when color is not valid", () => {
+    it("should return error if title is not present", () => {
+      const input = generateValidInput();
+      delete input.color;
+
+      const { error } = colorSchema.validate(input);
+
+      expect(error).toBeDefined();
+    });
+
+    it("should return error if title is present but empty", () => {
+      const input = generateValidInput();
+      input.color = "";
+
+      const { error } = colorSchema.validate(input);
+
+      expect(error).toBeDefined();
+    });
+
+    it("should return error if title is not string", () => {
+      const input = generateValidInput();
+      input.color = faker.number.int() as any;
+
+      const { error } = colorSchema.validate(input);
+
+      expect(error).toBeDefined();
+    });
+
+    it("should return error if title is shorter than 7 characters", () => {
+      const input = generateValidInput();
+      input.color = faker.string.alphanumeric(6);
+      const { error } = colorSchema.validate(input);
+
+      expect(error).toBeDefined();
+    });
+
+    it("should return error if title is longer than 7 characters", () => {
+      const input = generateValidInput();
+      input.color = faker.string.alphanumeric(8);
+      const { error } = colorSchema.validate(input);
+
+      expect(error).toBeDefined();
+    });
+  });
+
+  it("should return no error if input is valid", () => {
+    const input = generateValidInput();
+
+    const { error } = colorSchema.validate(input);
 
     expect(error).toBeUndefined();
   });

@@ -1,19 +1,23 @@
 import { Router } from "express";
-import noteController from "../controller/noteController.js";
-import { validateSchema } from "../middleware/validateSchema.js";
-import { noteSchema, colorSchema } from "../schema/noteSchema.js";
+import noteController from "../controller/noteController";
+import { validateSchema } from "../middleware/validateSchema";
+import { noteSchema, colorSchema } from "../schema/noteSchema";
 
 const noteRouter = Router();
 
 noteRouter.get("/", noteController.getNotes);
 noteRouter.post("/", validateSchema(noteSchema), noteController.postNote);
 noteRouter.delete("/:id", noteController.deleteNote);
-noteRouter.put("/favorite/:id", noteController.favoriteNote);
-noteRouter.put(
+noteRouter.patch("/favorite/:id", noteController.favoriteNote);
+noteRouter.patch(
   "/color/:id",
   validateSchema(colorSchema),
   noteController.editNoteColor
 );
-noteRouter.put("/content/:id", noteController.editNoteContent);
+noteRouter.put(
+  "/:id",
+  validateSchema(noteSchema),
+  noteController.editNoteContent
+);
 
 export default noteRouter;
