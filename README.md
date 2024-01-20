@@ -29,3 +29,22 @@ To start the code, run the following command
 ```
 npm run dev
 ```
+
+To run tests, input the following command
+
+```
+npm run test
+```
+Be warned, running tests will delete all notes currently on database and leave only one behind
+
+## Using the API
+
+This api was made to be used in conjunction with [corelab-front](https://github.com/duanzin/corelab-front).
+However, if you want to interact with it directly it is recommended you use an api client like postman or insomnia.
+All calls are made by sending a method to the api URL:
+
+```
+http://localhost:{port}
+```
+
+Below are the api routes and their uses.
