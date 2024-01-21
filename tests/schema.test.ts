@@ -4,7 +4,7 @@ import { colorSchema, noteSchema } from "../src/schema/noteSchema";
 describe("noteSchema", () => {
   const generateValidInput = () => ({
     title: faker.lorem.word({
-      length: { min: 1, max: 24 },
+      length: { min: 1, max: 18 },
       strategy: "shortest",
     }),
     text: faker.lorem.paragraph(),
@@ -38,9 +38,9 @@ describe("noteSchema", () => {
       expect(error).toBeDefined();
     });
 
-    it("should return error if title is longer than 24 characters", () => {
+    it("should return error if title is longer than 18 characters", () => {
       const input = generateValidInput();
-      input.title = faker.string.alphanumeric(25);
+      input.title = faker.string.alphanumeric(19);
       const { error } = noteSchema.validate(input);
 
       expect(error).toBeDefined();
@@ -100,7 +100,7 @@ describe("colorSchema", () => {
   });
 
   describe("when color is not valid", () => {
-    it("should return error if title is not present", () => {
+    it("should return error if color is not present", () => {
       const input = generateValidInput();
       delete input.color;
 
@@ -109,7 +109,7 @@ describe("colorSchema", () => {
       expect(error).toBeDefined();
     });
 
-    it("should return error if title is present but empty", () => {
+    it("should return error if color is present but empty", () => {
       const input = generateValidInput();
       input.color = "";
 
@@ -118,7 +118,7 @@ describe("colorSchema", () => {
       expect(error).toBeDefined();
     });
 
-    it("should return error if title is not string", () => {
+    it("should return error if color is not string", () => {
       const input = generateValidInput();
       input.color = faker.number.int() as any;
 
@@ -127,7 +127,7 @@ describe("colorSchema", () => {
       expect(error).toBeDefined();
     });
 
-    it("should return error if title is shorter than 7 characters", () => {
+    it("should return error if color is shorter than 7 characters", () => {
       const input = generateValidInput();
       input.color = faker.string.alphanumeric(6);
       const { error } = colorSchema.validate(input);
@@ -135,7 +135,7 @@ describe("colorSchema", () => {
       expect(error).toBeDefined();
     });
 
-    it("should return error if title is longer than 7 characters", () => {
+    it("should return error if color is longer than 7 characters", () => {
       const input = generateValidInput();
       input.color = faker.string.alphanumeric(8);
       const { error } = colorSchema.validate(input);

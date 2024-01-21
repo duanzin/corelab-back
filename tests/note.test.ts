@@ -28,7 +28,7 @@ describe("POST /", () => {
   describe("when body is valid", () => {
     const generateValidBody = () => ({
       title: faker.lorem.word({
-        length: { min: 1, max: 24 },
+        length: { min: 1, max: 18 },
         strategy: "shortest",
       }),
       text: faker.lorem.paragraph(),
@@ -174,7 +174,7 @@ describe("PUT /:id", () => {
   describe("when body is valid", () => {
     const generateValidBody = () => ({
       title: faker.lorem.word({
-        length: { min: 1, max: 24 },
+        length: { min: 1, max: 18 },
         strategy: "shortest",
       }),
       text: faker.lorem.paragraph(),
