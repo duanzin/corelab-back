@@ -8,7 +8,7 @@ Clone this repo and install all dependencies using:
 ```
 npm i
 ```
-Create a PostgreSQL database with the name of your liking and use the followeing sql query
+Create a PostgreSQL database with the name of your liking and use the following sql query
 ```
 CREATE TABLE IF NOT EXISTS public.notes
 (
